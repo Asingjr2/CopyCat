@@ -1,0 +1,4 @@
+Django==2.0.1
+django-autoslug==1.9.4.dev0
+django-storages==1.6.5
+pytz==2017.3
