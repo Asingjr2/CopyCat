@@ -1,5 +1,6 @@
 # CopyCat
 
+## Reddit Clone Project
 ## Installation
 
 ```bash
