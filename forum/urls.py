@@ -1,16 +1,13 @@
-from django.conf.urls import url 
+from django.urls import path 
 from . import views 
 
 app_name = "forum"
 urlpatterns = [
-    # urls shared by everyone with index == login
-    url(r'^$', views.views, name="index"), 
-    url(r'^post$', views.post, name="post"), 
-    url(r'^logout$', views.logout, name="logout"), 
+    # Will have general front page to see comments...can merge register/login later
+    path("", views.Index, name="index"), 
+    # Individual register/login page using django user model
+    path("log_reg", views.LogRegView.as_view(), name="log_reg"),
+    path("post", views.post, name="post"),
+    path("main", views.Main, name="main"),
 
-    # urls specific to user to when logged in
-    url(r'^(?P<user_name>\d+)$', views.main, name="main"),
-    url(r'^(?P<user_name>\d+)/profile$', views.profile, name="profile"),
-    url(r'^mail$', views.mail, name="mail"), 
-    url(r'^preferences$', views.preferneces, name="preferences")
 ]

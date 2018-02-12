@@ -7,6 +7,23 @@
 </head>
 <body>
     <h1>PAGE TO LOGIN or REGISTER </h1>
+    <h3>Registration Form</h3>
+    <form action="log_reg" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="form-type" value="register"> 
+        {{ form.as_p }}
+        <input type="submit" value="CREATE USER">
+    </form>
+    
+    <hr>
+    <br>
+    <h3>Login Form</h3>
+    <form action="log_reg" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="form-type" value="login">
+        {{ form2.as_p }}
+        <input type="submit" value="LOGIN USER">
+    </form>
 </body>
 </html>
 <!-- Page will exist for functionality and then I would add more complicated jquery to allow for separate iframe/div to appear for what could be ajax information flow

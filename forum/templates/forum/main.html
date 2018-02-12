@@ -1,4 +1,4 @@
-{% laod static %}
+{% load static %}
 <html lang="en">
 
 <head>
@@ -14,63 +14,9 @@
     <script src=' {% static "forum/jquery.js" %}'></script>
     <link rel="stylesheet" type='text/css' href="{%  static 'forum/style.css' %}">
 </head>
-
+ 
 <body>
-    <div class="container">
-        <div id="top_nav">
-            <nav>
-                <ul>
-                    <li> Link</li>
-                    <li> Link</li>
-                    <li> Link</li>
-                    <li> Link</li>
-                </ul>
-            </nav>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <img>
-                <nav>
-                    <ul>
-                        <li> Link</li>
-                        <li> Link</li>
-                        <li> Link</li>
-                        <li> Link</li>
-                        <li> Link</li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div>
-
-            <div class="row">
-                <div class="col-sm-8 main">
-                    <div id="large_box">
-                        <img>
-                        <p></p>
-                    </div>
-                    <div class="comment_line">
-                        <a> link</a>
-                        <p>list, content, author, links for comments</p>
-                    </div>
-                </div>
-                <div class="col-sm-4 side_search">
-                </div>
-            </div>
-            <div>
-                <div class="jumbotron">
-                    <div class="bottom_links">
-                        <ul>
-                            <li> Links</li>
-                            <li> Links</li>
-                            <li> Links</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    <h1>Welcome {{ user.first_name }}</h1>
 </body>
 
 </html>
