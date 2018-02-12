@@ -3,11 +3,10 @@ from . import views
 
 app_name = "forum"
 urlpatterns = [
-    # Will have general front page to see comments...can merge register/login later
-    path("", views.Index, name="index"), 
-    # Individual register/login page using django user model
-    path("log_reg", views.LogRegView.as_view(), name="log_reg"),
-    path("post", views.post, name="post"),
-    path("main", views.Main, name="main"),
+    # Log_Reg page removed 
+    path("", views.HomePageView.as_view(), name="home"), 
+    path("user", views.UserView.as_view(), name="user"),
+    path("comment/<int:pk>", views.CommentDetailView.as_view(), name="comment_detail"),
+    path("post", views.posttest, name="posttest"),
 
 ]

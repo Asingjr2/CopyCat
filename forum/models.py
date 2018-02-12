@@ -37,6 +37,7 @@ class Post(BaseModel):
     title = models.CharField(max_length=100)
     slug = AutoSlugField(populate_from='title')
 
+    #  Votes is being used as related name in PostVote
     @property
     def upvotes(self):
         return self.votes.filter(vote=UPVOTE).count()
