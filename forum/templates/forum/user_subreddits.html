@@ -1,0 +1,27 @@
+{% extends "forum/base.html" %}
+<title> 
+    {% block title%} User Subreddits {% endblock %}
+</title>
+{% block content %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+            <h1>USER GENERIC SUBREDDITS/ FORUMS</h1>
+    </div>
+    <div class="panel-body">
+        {% for forum in forum_list %}
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-1">
+                <p>FORUM {{ forloop.counter }} INFO:</p>
+                <a href="{% url 'forum:forum' forum.slug %}">
+                    <strong>Slug =</strong> {{ forum.slug }} ||
+                </a>
+                <p>
+                    <strong>Created =</strong> {{ forum.created_at }} 
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+   
+    {% endblock %}

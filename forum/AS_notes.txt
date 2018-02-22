@@ -1,0 +1,8 @@
+main page should be list view
+    list should contain list of comments that are maybe the best in each forum
+main/r/
+    listview of popular links/forums
+main/r/forum
+    forum with list of comments
+main/forum/comments
+    lets you see comments

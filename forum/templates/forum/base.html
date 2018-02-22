@@ -1,26 +1,26 @@
 {% load static %}
 <html lang="en">
 <head>
+    <title>Base</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src=' {% static "forum/jquery.js" %}'></script>
     <link rel="stylesheet" type='text/css' href="{%  static 'forum/style.css' %}">
 </head>
 <body>
-  <h1>INDEX PAGE SIR</h1>
-  <h1>
-    <h1>{{random }}</h1>
-    <!--
-    <a href=" {% url 'forum:log_reg' %}">Login or Register</a>
-    -->
-  </h1>
+    <div class="container">
+
+        <button class="btn btn-primary" id="jq_test">
+            Jquery Test
+        </button>
+        {% block content%}
+        {% endblock %}
+    </div>
 </body>
 </html>
-

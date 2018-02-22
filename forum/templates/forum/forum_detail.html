@@ -1,0 +1,52 @@
+{% extends "forum/base.html" %}
+<title>
+    {% block title%} User Subreddits {% endblock %}
+</title>
+{% block content %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+<h1>INDIVIDUAL FORUM INFO</h1>
+<h2>
+    SLUG: {{ forum.slug}} || TOTAL POSTS: {{ forum.post_set.count }}
+</h2>
+    </div>
+    <div class="panel-body"></div>
+ {% for post in forum.post_set.all %}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-1">
+        <p>POST {{ forloop.counter }} INFO:</p>
+        <a href="{% url 'forum:post' post.id %}">
+            <strong>Title =</strong> {{ post.title }} ||
+        </a>
+        <p>
+            <strong> Username =</strong> {{ post.user.username }}
+        </p>
+       
+    </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}
+
+<!--
+    TRIED TO EXPERIMENT WITH BOTH FORMS BELOW BUT TO NO AVAIL
+    
+<form action="/create_postvote/{{ post.id }}/{{ post.slug }}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{post.user.id}}">
+    <input type="hidden" name="slug" value="{{post.slug}}">
+    <button class="btn btn-warning">
+        <input type="submit" value="DOWNVOTE">
+    </button>
+</form>
+<form action="/cprac" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{post.user.id}}">
+    <input type="hidden" name="slug" value="{{post.slug}}">
+    <button class="btn btn-warning">
+        <input type="submit" value="DOWNVOTE">
+    </button>
+</form>
+-->

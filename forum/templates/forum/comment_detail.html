@@ -1,0 +1,11 @@
+{% extends "forum/base.html" %}
+<title>
+    {% block title%} User Subreddits {% endblock %}
+</title>
+{% block content %}
+<h1>INDIVIDUAL POST INFO</h1>
+<h2>
+    BODY: {{ comment.body}} || USER: {{ comment.user.username }}
+</h2>
+
+{% endblock %}
