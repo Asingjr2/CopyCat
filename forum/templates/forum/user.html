@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>
+        <a href="/">HOME</a>
+    </h1>
+    <h1>USER INFO PAGE</h1>
+    <p> Attempt to access user info</p>
+    <h3> Anon: {{ request.user }}</h3>
+    <h3> User: {{ user}}</h3>
+    <h3> User First Name: {{ user.first_name }}</h3>
+    <h3> User ID: {{ user.id }}</h3>
+    <h3> User Email: {{ user.email }}</h3>
+    <h3> UUID {{ user.object_id }}</h3>
+    
+    <!-- Need to flesh out...not sure if lack of display is result of security as superuser or error on my part-->
+
+    
+</body>
+</html>
+
+
+{{ request.user }} in HTML = Anonymous User
+{{ user}} in HTML = Anonymous User
+{{ user.first_name }} in HTML = blank
+ {{ user.id }} in HTML = None

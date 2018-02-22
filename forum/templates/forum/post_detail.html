@@ -1,0 +1,30 @@
+{% extends "forum/base.html" %}
+<title>
+    {% block title%} User Subreddits {% endblock %}
+</title>
+{% block content %}
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h1>INDIVIDUAL POST INFO</h1>
+        <h2>
+            TITLE: {{ post.title}} || TOTAL COMMENTS: {{ post.comment_set.count }}
+        </h2>
+    </div>
+    <div class="panel-body">
+
+{% for comment in post.comment_set.all %}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-1">
+        <p>Comment {{ forloop.counter }} INFO:</p>
+        <a href="{% url 'forum:comment' comment.id %}">
+            <strong>Content =</strong> {{ comment.body }} ||
+        </a>
+        <p>
+            <strong> Username =</strong> {{ comment.user.username }}
+        </p>
+    </div>
+</div>
+{% endfor %} {% endblock %}
+    </div>
+</div>
+

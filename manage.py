@@ -13,3 +13,5 @@ if __name__ == "__main__":
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+
+    # Was unable to determine how to resolve error.  See that exc is reference to ImportError..wasn't sure how to change to resolve cmdline error where it cannot import from "esc"

@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     # External
     'storages',
     # Local
-    'forum'
+    'forum.apps.ForumConfig'
 ]
 
 MIDDLEWARE = [
