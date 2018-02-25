@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+
+{% block meta_title %}{{ object.username }}{% endblock %}
+{% block meta_description %}Joined {{ object.date_joined|naturaltime }}{% endblock %}
+{% block meta_og_title %}{{ object.username }}{% endblock %}
+{% block meta_og_description %}Joined {{ object.date_joined|naturaltime }}{% endblock %}
+
+{% block extra_style %}
+    <style>
+        div.post-item {
+            border: 1px solid #000000;
+            padding: 0em 2em;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>{{ object.username }}</h1>
+        <p>Joined: {{ object.date_joined|naturaltime }}</p>
+    </section>
+{% endblock %}

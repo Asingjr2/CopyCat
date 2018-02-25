@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block meta_title %}Subreddit List{% endblock %}
+{% block meta_description %}Explore Subreddits{% endblock %}
+{% block meta_og_title %}Subreddit List{% endblock %}
+{% block meta_og_description %}Explore Subreddits{% endblock %}
+
+{% block extra_style %}
+    <style>
+        div.subreddit-item {
+            border: 1px solid #000000;
+            padding: 0em 2em;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Subreddits</h1>
+
+        {% for obj in object_list %}
+            <div class="subreddit-item">
+                <a href="{{ obj.get_absolute_url }}"><h3>{{ obj.slug }}</h3></a>
+                <p>Subreddit description</p>
+            </div>
+        {% empty %}
+            <p>There aren't any Subreddits</p>
+        {% endfor %}
+    </section>
+{% endblock %}
