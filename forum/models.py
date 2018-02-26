@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator
 from django.db import models
+from django.urls import reverse
 
 from autoslug import AutoSlugField
 
@@ -23,6 +24,9 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.slug
+
+    def get_absolute_url(self):
+        return reverse('forum_detail', args=(self.slug,))
 
 
 class Post(BaseModel):
@@ -51,6 +55,12 @@ class Post(BaseModel):
 
     def __str__(self):
         return '{}, {}: {}'.format(self.forum, self.user, self.title)
+
+    def get_absolute_url(self):
+        return reverse(
+            'post_detail',
+            args=(self.forum.slug, str(self.id), self.slug)
+        )
 
 
 class Comment(BaseModel):
@@ -86,6 +96,12 @@ class Comment(BaseModel):
 
     def __str__(self):
         return '{}: {}'.format(self.user, self.body[:10])
+
+    def get_absolute_url(self):
+        return reverse(
+            'comment_detail',
+            args=(self.post.forum.slug, str(self.post.id), self.post.slug, self.id)
+        )
 
 
 class PostVote(BaseModel):

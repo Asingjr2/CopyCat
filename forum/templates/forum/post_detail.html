@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+
+{% block meta_title %}{{ object.title }}{% endblock %}
+{% block meta_description %}Post description{% endblock %}
+{% block meta_og_title %}{{ object.title }}{% endblock %}
+{% block meta_og_description %}Post description{% endblock %}
+
+{% block extra_style %}
+    <style>
+        div.comment-item {
+            border: 1px solid #000000;
+            padding: 0em 2em;
+        }
+
+        p.comment-body {
+
+        }
+
+        p.comment-footer {
+            font-size: 0.8em;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>{{ object.title }}</h1>
+        <p>Post description</p>
+    </section>
+
+    <section>
+        {% for comment in object.comment_set.all %}
+            <div class="comment-item">
+                {% if user.is_authenticated %}
+                <form action="{% url 'comment_upvote' comment.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="⬆️ {{ comment.upvotes }}" />
+                </form>
+                <form action="{% url 'comment_downvote' comment.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="⬇️ {{ comment.downvotes }}" />
+                </form>
+                {% endif %}
+                <h3><a href="{{ comment.user.get_absolute_url }}">{{ comment.user.username }}</a> 0 points {{ comment.updated_at|naturaltime }}</h3>
+                <p class="comment-body">{{ comment.body }}</p>
+                <p class="comment-footer"><a href="{{ comment.get_absolute_url }}">permalink</a></p>
+            </div>
+        {% empty %}
+            <p>There aren't any comments.</p>
+        {% endfor %}
+    </section>
+{% endblock %}
