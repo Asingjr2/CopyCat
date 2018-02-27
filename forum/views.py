@@ -10,7 +10,8 @@ from .models import (
     Comment,
     CommentVote,
     UPVOTE,
-    DOWNVOTE
+    DOWNVOTE,
+    PostVote
 )
 
 
@@ -72,3 +73,44 @@ class CommentDownvoteView(LoginRequiredMixin, View):
             )
 
         return redirect(comment.get_absolute_url())
+
+class PostUpvoteView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        post = get_object_or_404(Post, id=self.kwargs.get('pk'))
+
+        try:
+            post_vote = PostVote.objects.get(
+                user=self.request.user,
+                post=post
+            )
+            post_vote.vote = UPVOTE
+            post_vote.save()
+        except PostVote.DoesNotExist:
+            _ = PostVote.objects.create(
+                user=self.request.user,
+                post=post,
+                vote=UPVOTE
+            )
+
+        return redirect(post.get_absolute_url())
+
+
+class PostDownvoteView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        post = get_object_or_404(Post, id=self.kwargs.get('pk'))
+
+        try:
+            post_vote = PostVote.objects.get(
+                user=self.request.user,
+                post=post
+            )
+            post_vote.vote = DOWNVOTE
+            post_vote.save()
+        except PostVote.DoesNotExist:
+            _ = PostVote.objects.create(
+                user=self.request.user,
+                post=post,
+                vote=DOWNVOTE
+            )
+
+        return redirect(post.get_absolute_url())

@@ -6,7 +6,10 @@ from .views import (
     PostDetailView,
     CommentDetailView,
     CommentUpvoteView,
-    CommentDownvoteView
+    CommentDownvoteView,
+    # Adding new paths 
+    PostUpvoteView, 
+    PostDownvoteView
 )
 
 
@@ -17,6 +20,13 @@ urlpatterns = [
     path('comments/<uuid:pk>/downvote/',
          CommentDownvoteView.as_view(),
          name='comment_downvote'),
+#  Adding post_upvote and down_vote paths
+    path('posts/<uuid:pk>/upvote/',
+         PostUpvoteView.as_view(),
+         name='post_upvote'),
+    path('posts/<uuid:pk>/downvote/',
+         PostDownvoteView.as_view(),
+         name='post_downvote'),
     path('<slug:slug>/',
          ForumDetailView.as_view(),
          name='forum_detail'),

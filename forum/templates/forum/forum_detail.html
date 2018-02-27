@@ -24,6 +24,17 @@
     <section>
         {% for post in object.post_set.all %}
             <div class="post-item">
+                <!-- Adding post voting -->
+                 {% if user.is_authenticated %}
+                <form action="{% url 'post_upvote' post.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="⬆️ {{ post.upvotes }}" />
+                </form>
+                <form action="{% url 'post_downvote' post.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="⬇️ {{ post.downvotes }}" />
+                </form>
+                {% endif %}
                 <a href="{{ post.get_absolute_url }}"><h3>{{ post }}</h3></a>
                 <p>submitted {{ post.created_at|naturaltime }} by <a href="{% url 'user_profile' post.user.username %}">{{ post.user }}</a></p>
             </div>
