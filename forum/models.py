@@ -59,7 +59,7 @@ class Post(BaseModel):
     def get_absolute_url(self):
         return reverse(
             'post_detail',
-            args=(self.forum.slug, str(self.id), self.slug)
+            args=(self.forum.slug, self.id, self.slug)
         )
 
 
@@ -100,7 +100,7 @@ class Comment(BaseModel):
     def get_absolute_url(self):
         return reverse(
             'comment_detail',
-            args=(self.post.forum.slug, str(self.post.id), self.post.slug, self.id)
+            args=(self.post.forum.slug, self.post.id, self.post.slug, self.id)
         )
 
 
