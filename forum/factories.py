@@ -4,7 +4,9 @@ import factory.fuzzy
 from .models import (
     Forum,
     Post,
-    Comment
+    Comment,
+    PostVote,
+    CommentVote
 )
 from base.factories import BaseModelFactory
 from user.factories import UserFactory
@@ -33,3 +35,17 @@ class CommentFactory(BaseModelFactory):
     post = factory.SubFactory(PostFactory)
     user = factory.SubFactory(UserFactory)
     body = factory.fuzzy.FuzzyText(length=20)
+
+
+class PostVoteFactory(BaseModelFactory):
+    class Meta:
+        model = PostVote
+
+    # TODO
+
+
+class CommentVoteFactory(BaseModelFactory):
+    class Meta:
+        model = CommentVote
+
+    # TODO
