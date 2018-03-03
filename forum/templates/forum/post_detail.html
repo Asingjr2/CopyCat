@@ -42,7 +42,7 @@
                     <input type="submit" value="⬇️ {{ comment.downvotes }}" />
                 </form>
                 {% endif %}
-                <h3><a href="{{ comment.user.get_absolute_url }}">{{ comment.user.username }}</a> 0 points {{ comment.updated_at|naturaltime }}</h3>
+                <h3><a href="{% url 'user_profile' comment.user.username %}">{{ comment.user.username }}</a> 0 points {{ comment.updated_at|naturaltime }}</h3>
                 <p class="comment-body">{{ comment.body }}</p>
                 <p class="comment-footer"><a href="{{ comment.get_absolute_url }}">permalink</a></p>
             </div>
