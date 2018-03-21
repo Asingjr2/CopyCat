@@ -1,8 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect
+
+from .mixins import ModeratorRequiredMixin
+from .forms import ForumUpdateForm
 
 from .models import (
     Forum,
@@ -26,6 +30,14 @@ class ForumDetailView(DetailView):
 
 class ForumListView(ListView):
     model = Forum
+
+
+class ForumUpdateView(ModeratorRequiredMixin, UpdateView):
+    model = Forum
+    form_class = ForumUpdateForm
+
+    def get_forum(self):
+        return self.get_object()
 
 
 class PostDetailView(DetailView):

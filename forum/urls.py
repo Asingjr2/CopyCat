@@ -3,11 +3,11 @@ from django.urls import path
 from .views import (
     ForumDetailView,
     ForumListView,
+    ForumUpdateView,
     PostDetailView,
     CommentDetailView,
     CommentUpvoteView,
     CommentDownvoteView,
-    # Adding new paths 
     PostUpvoteView, 
     PostDownvoteView,
     
@@ -21,13 +21,15 @@ urlpatterns = [
     path('comments/<uuid:pk>/downvote/',
          CommentDownvoteView.as_view(),
          name='comment_downvote'),
-#  Adding post_upvote and down_vote paths
     path('posts/<uuid:pk>/upvote/',
          PostUpvoteView.as_view(),
          name='post_upvote'),
     path('posts/<uuid:pk>/downvote/',
          PostDownvoteView.as_view(),
          name='post_downvote'),
+    path('<slug:slug>/update/',
+         ForumUpdateView.as_view(),
+         name='forum_moderators_add'),
     path('<slug:slug>/',
          ForumDetailView.as_view(),
          name='forum_detail'),

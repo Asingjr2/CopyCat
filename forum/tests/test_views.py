@@ -24,8 +24,14 @@ class ForumListViewTestCase(TestCase):
         client = Client()
         response = client.get("/")
         self.assertTrue(response.status_code == 200, "Site does not exist")
-        # TODO
-       
+
+
+
+class ForumUpdateViewTestCase(TestCase):
+    def test_200(self):
+        self.assertTrue(True)
+
+
 class PostDetailViewTestCase(TestCase):
     def test_200(self):
         # test_slug = Forum.objects.first().slug
