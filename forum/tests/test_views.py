@@ -19,6 +19,12 @@ class ForumListViewTestCase(TestCase):
         self.assertTrue(True)
 
 
+class ForumUpdateViewTestCase(TestCase):
+    def test_200(self):
+        # TODO
+        self.assertTrue(True)
+
+
 class PostDetailViewTestCase(TestCase):
     def test_200(self):
         # TODO
