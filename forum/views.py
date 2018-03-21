@@ -15,6 +15,11 @@ from .models import (
 )
 
 
+# class UserProfileView(DetailView):
+#     model = request.user
+#     pk_url_kwarg = 'user_id'
+    #  Not sure how to add user
+
 class ForumDetailView(DetailView):
     model = Forum
 
@@ -26,6 +31,8 @@ class ForumListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     pk_url_kwarg = 'post_id'
+    # how do i access passed in parameter?
+    print(pk_url_kwarg)
 
 
 class CommentDetailView(DetailView):

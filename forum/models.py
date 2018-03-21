@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator
 from django.db import models
+from django.db.models import Sum
 from django.urls import reverse
 
 from autoslug import AutoSlugField
@@ -51,7 +52,7 @@ class Post(BaseModel):
 
     @property
     def score(self):
-        return self.votes.all().aggregate(models.db.Sum('vote'))
+        return self.votes.all().aggregate(Sum('vote'))
 
     def __str__(self):
         return '{}, {}: {}'.format(self.forum, self.user, self.title)

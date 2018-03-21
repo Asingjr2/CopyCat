@@ -9,7 +9,8 @@ from .views import (
     CommentDownvoteView,
     # Adding new paths 
     PostUpvoteView, 
-    PostDownvoteView
+    PostDownvoteView,
+    
 )
 
 
@@ -38,5 +39,9 @@ urlpatterns = [
          name='comment_detail'),
     path('',
          ForumListView.as_view(),
-         name='forum_list')
+         name='forum_list'),
+        #   Adding user profile url to match view that can be tested
+    # path('<uuid:user_id>/profile/',
+    #      UserProfileView.as_view(),
+    #      name='user_profile'),
 ]
