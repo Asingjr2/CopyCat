@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from ..models import Post, Comment, PostVote, CommentVote
 from ..factories import (
     ForumFactory,
@@ -10,13 +11,19 @@ from ..factories import (
     CommentVoteFactory
 )
 
+.......E
+ERROR: forum.tests.test_views(unittest.loader._FailedTest)
+UNIQUE constraint failed: forum_forum.slug
+Ran 8 tests in 0.455s
+
+FAILED(errors=1)
+Destroying test database for alias 'default'...
 
 class ForumFactoryTestCase(TestCase):
     def test_factory(self):
         tf = ForumFactory()
 
         self.assertIsNotNone(tf.slug)
-        # TODO
 
 
 class PostFactoryTestCase(TestCase):
@@ -25,8 +32,6 @@ class PostFactoryTestCase(TestCase):
 
         self.assertIsNotNone(tp.forum)
         self.assertIsNotNone(tp.user)
-        #   Not sure how to test tite?  Maybe with regex?
-        # TODO
 
 
 class CommentFactoryTestCase(TestCase):
@@ -46,7 +51,6 @@ class PostVoteFactoryTestCase(TestCase):
         self.assertIsNotNone(tpv.user)
         self.assertIsNotNone(tpv.post)
         self.assertIsNotNone(tpv.vote)
-        # TODO
 
 class CommentVoteFactoryTestCase(TestCase):
     def test_factory(self):
@@ -55,13 +59,3 @@ class CommentVoteFactoryTestCase(TestCase):
         self.assertIsNotNone(tcv.user)
         self.assertIsNotNone(tcv.comment)
         self.assertIsNotNone(tcv.vote)
-        # TODO
-
-class PostDownvoteTestCase(TestCase):
-   '''
-   maybe create fake post...fake post vote...then run test to see if downvote descreased votes total...but was still above 0?
-   '''
-class PostUpvoteTestCase(TestCase):
-       '''
-   maybe create fake post...fake post vote...then run test to see if upvote increased votes total...?
-   '''

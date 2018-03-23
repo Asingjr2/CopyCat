@@ -1,5 +1,6 @@
 import factory
 from factory import fuzzy
+
 from .models import (
     Forum,
     Post,
@@ -46,7 +47,6 @@ class PostVoteFactory(BaseModelFactory):
     user = factory.SubFactory(UserFactory)
     post = factory.SubFactory(PostFactory)
     vote = factory.fuzzy.FuzzyChoice(VOTE_CHOICES)
-    # TODO
 
 
 class CommentVoteFactory(BaseModelFactory):
@@ -56,6 +56,3 @@ class CommentVoteFactory(BaseModelFactory):
     user = factory.SubFactory(UserFactory)
     comment = factory.SubFactory(CommentFactory)
     vote = factory.fuzzy.FuzzyChoice(VOTE_CHOICES)
-
-    # Not sure how to test if vote feature actually impacts aggregate number or if worth testing at all
-    # TODO

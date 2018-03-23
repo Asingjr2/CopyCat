@@ -1,4 +1,5 @@
 from uuid import uuid4
+
 from django.test import Client, TestCase
 from django.urls import reverse
 from ..factories import CommentFactory, ForumFactory, PostFactory, PostVoteFactory, CommentVoteFactory
@@ -30,19 +31,16 @@ class ForumListViewTestCase(TestCase):
 class ForumUpdateViewTestCase(TestCase):
     def test_200(self):
         self.assertTrue(True)
+        
+        # TODO
 
 
 class PostDetailViewTestCase(TestCase):
     def test_200(self):
-        # test_slug = Forum.objects.first().slug
-        # test_post_id = Post.objects.first().id
-        # test_post_slug = Post.objects.first().id
-        #  <slug:forum_slug>/<uuid:post_id>/<slug:post_slug>/
         url = "{}/{}/{}/".format(tf.slug, tp.id, tp.slug)
         client = Client()
         response = client.get(url)
         self.assertTrue(response.status_code == 200, "Site does not exist")
-        # TODO
 
 class CommentDetailViewTestCase(TestCase):
     def test_404(self):
