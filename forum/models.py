@@ -18,7 +18,7 @@ VOTE_CHOICES = (
 
 
 class Forum(models.Model):
-    slug = models.SlugField(primary_key=True)
+    slug = models.SlugField(primary_key=True, unique=True)
     moderators = models.ManyToManyField(User)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

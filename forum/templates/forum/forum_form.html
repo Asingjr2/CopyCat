@@ -16,16 +16,26 @@
 {% endblock %}
 
 {% block body %}
-    <section>
-        <h1>{{ object.slug }}</h1>
-        <p>Subreddit description</p>
-    </section>
+<div class="container-fluid">
+<!-- add nav bar stuff -->
+<section>
+    <h1>{{ object.slug }}</h1>
+    <p>Subreddit description</p>
+</section>
+    <div class="container">
 
-    <section>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Update" />
-        </form>
-    </section>
+        <div class="row">
+            <!-- add second row with picture that extends to bottom-->
+                <section>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Update" />
+                    </form>
+                </section>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}

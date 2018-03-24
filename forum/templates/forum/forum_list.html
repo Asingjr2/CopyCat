@@ -15,16 +15,19 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
+
     <section>
         <h1>Subreddits</h1>
-
+        
         {% for obj in object_list %}
-            <div class="subreddit-item">
-                <a href="{{ obj.get_absolute_url }}"><h3>{{ obj.slug }}</h3></a>
-                <p>Subreddit description</p>
-            </div>
+        <div class="subreddit-item">
+            <a href="{{ obj.get_absolute_url }}"><h3>{{ obj.slug }}</h3></a>
+            <p>Subreddit description</p>
+        </div>
         {% empty %}
-            <p>There aren't any Subreddits</p>
+        <p>There aren't any Subreddits</p>
         {% endfor %}
     </section>
+</div>
 {% endblock %}
