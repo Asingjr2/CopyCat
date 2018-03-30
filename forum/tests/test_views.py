@@ -6,26 +6,21 @@ from ..factories import CommentFactory, ForumFactory, PostFactory, PostVoteFacto
 from user.factories import UserFactory
 
 #  For use throughout tests...may be bad practice..not sure
-tf = ForumFactory()
-tp = PostFactory()
-tpv = PostVoteFactory()
-tcv = CommentVoteFactory()
-
 class ForumDetailViewTestCase(TestCase):
     def test_200(self):
-        url = tf.get_absolute_url
+        tf = ForumFactory()
+        url = tf.get_absolute_url()
         client = Client()
         response = client.get(url)
-        self.assertTrue(response.status_code == 200, "Site does not exist")
-        #  saw your assert code after the fact....is more concise...i guess lol and no error message is needed
-        # TODO
+        self.assertEqual(response.status_code, 200)
+     
 
 class ForumListViewTestCase(TestCase):
     def test_200(self):
         client = Client()
-        response = client.get("/")
-        self.assertTrue(response.status_code == 200, "Site does not exist")
-
+        url = reverse('forum_list')
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
 
 
 class ForumUpdateViewTestCase(TestCase):
@@ -37,10 +32,12 @@ class ForumUpdateViewTestCase(TestCase):
 
 class PostDetailViewTestCase(TestCase):
     def test_200(self):
-        url = "{}/{}/{}/".format(tf.slug, tp.id, tp.slug)
+        tf = ForumFactory()
+        tp = PostFactory()
+        url = tp.get_absolute_url()
         client = Client()
         response = client.get(url)
-        self.assertTrue(response.status_code == 200, "Site does not exist")
+        self.assertEqual(response.status_code,200)
 
 class CommentDetailViewTestCase(TestCase):
     def test_404(self):

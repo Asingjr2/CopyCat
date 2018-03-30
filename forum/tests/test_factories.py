@@ -11,14 +11,6 @@ from ..factories import (
     CommentVoteFactory
 )
 
-.......E
-ERROR: forum.tests.test_views(unittest.loader._FailedTest)
-UNIQUE constraint failed: forum_forum.slug
-Ran 8 tests in 0.455s
-
-FAILED(errors=1)
-Destroying test database for alias 'default'...
-
 class ForumFactoryTestCase(TestCase):
     def test_factory(self):
         tf = ForumFactory()
