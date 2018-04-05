@@ -24,11 +24,23 @@ class ForumListViewTestCase(TestCase):
 
 
 class ForumUpdateViewTestCase(TestCase):
-    def test_200(self):
-        self.assertTrue(True)
-        
-        # TODO
+    def test_302(self):
+        test_forum = ForumFactory()
+        url = reverse("forum_moderators_add", args=(test_forum.slug,))
+        client = Client()
+        response = client.get(url)
+        self.assertEqual(response.status_code, 302)
 
+    def test_200(self):
+        test_forum = ForumFactory()
+        test_user = UserFactory()
+        url = reverse("forum_moderators_add", args=(test_forum.slug,))
+        client = Client()
+        # not sure why failing
+        client.force_login(test_user)
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
+        
 
 class PostDetailViewTestCase(TestCase):
     def test_200(self):
@@ -38,6 +50,7 @@ class PostDetailViewTestCase(TestCase):
         client = Client()
         response = client.get(url)
         self.assertEqual(response.status_code,200)
+
 
 class CommentDetailViewTestCase(TestCase):
     def test_404(self):
@@ -60,9 +73,7 @@ class CommentDetailViewTestCase(TestCase):
 
     def test_200(self):
         comment = CommentFactory()
-        #  How can this work without passing any variables...or you did above...let me refactor my stuff
         url = comment.get_absolute_url()
-
         client = Client()
         response = client.get(url)
         self.assertEqual(response.status_code, 200)

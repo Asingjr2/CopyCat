@@ -51,3 +51,4 @@ class CommentVoteFactoryTestCase(TestCase):
         self.assertIsNotNone(tcv.user)
         self.assertIsNotNone(tcv.comment)
         self.assertIsNotNone(tcv.vote)
+        
