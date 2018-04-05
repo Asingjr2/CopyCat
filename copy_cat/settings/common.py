@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     # Local
     'base',
     'forum',
-    'user'
+    'user', 
+    "log_reg"
 ]
 
 MIDDLEWARE = [

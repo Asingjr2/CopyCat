@@ -1,5 +1,5 @@
 import factory
-import factory.fuzzy
+from factory import fuzzy
 
 from .models import (
     Forum,
@@ -11,6 +11,9 @@ from .models import (
 from base.factories import BaseModelFactory
 from user.factories import UserFactory
 
+
+VOTE_CHOICES = [-1,1]
+# For use with post and comment votes.  Would run test to ensure that total vote count increases or descreases by set amount and never goes below zero
 
 class ForumFactory(BaseModelFactory):
     class Meta:
@@ -34,18 +37,22 @@ class CommentFactory(BaseModelFactory):
 
     post = factory.SubFactory(PostFactory)
     user = factory.SubFactory(UserFactory)
-    body = factory.fuzzy.FuzzyText(length=20)
+    body = factory.fuzzy.FuzzyText(length=500)
 
 
 class PostVoteFactory(BaseModelFactory):
     class Meta:
         model = PostVote
 
-    # TODO
+    user = factory.SubFactory(UserFactory)
+    post = factory.SubFactory(PostFactory)
+    vote = factory.fuzzy.FuzzyChoice(VOTE_CHOICES)
 
 
 class CommentVoteFactory(BaseModelFactory):
     class Meta:
         model = CommentVote
 
-    # TODO
+    user = factory.SubFactory(UserFactory)
+    comment = factory.SubFactory(CommentFactory)
+    vote = factory.fuzzy.FuzzyChoice(VOTE_CHOICES)

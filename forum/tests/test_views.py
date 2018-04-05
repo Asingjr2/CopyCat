@@ -2,37 +2,59 @@ from uuid import uuid4
 
 from django.test import Client, TestCase
 from django.urls import reverse
-
-from ..factories import CommentFactory
+from ..factories import CommentFactory, ForumFactory, PostFactory, PostVoteFactory, CommentVoteFactory
 from user.factories import UserFactory
 
-
+#  For use throughout tests...may be bad practice..not sure
 class ForumDetailViewTestCase(TestCase):
     def test_200(self):
-        # TODO
-        self.assertTrue(True)
-
+        tf = ForumFactory()
+        url = tf.get_absolute_url()
+        client = Client()
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
+     
 
 class ForumListViewTestCase(TestCase):
     def test_200(self):
-        # TODO
-        self.assertTrue(True)
+        client = Client()
+        url = reverse('forum_list')
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
 
 
 class ForumUpdateViewTestCase(TestCase):
-    def test_200(self):
-        # TODO
-        self.assertTrue(True)
+    def test_302(self):
+        test_forum = ForumFactory()
+        url = reverse("forum_moderators_add", args=(test_forum.slug,))
+        client = Client()
+        response = client.get(url)
+        self.assertEqual(response.status_code, 302)
 
+    def test_200(self):
+        test_forum = ForumFactory()
+        test_user = UserFactory()
+        url = reverse("forum_moderators_add", args=(test_forum.slug,))
+        client = Client()
+        # not sure why failing
+        client.force_login(test_user)
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
+        
 
 class PostDetailViewTestCase(TestCase):
     def test_200(self):
-        # TODO
-        self.assertTrue(True)
+        tf = ForumFactory()
+        tp = PostFactory()
+        url = tp.get_absolute_url()
+        client = Client()
+        response = client.get(url)
+        self.assertEqual(response.status_code,200)
 
 
 class CommentDetailViewTestCase(TestCase):
     def test_404(self):
+        #  Do not understand what is goin on
         comment = CommentFactory()
         fake_comment_id = str(uuid4())
         url = reverse(
@@ -52,7 +74,6 @@ class CommentDetailViewTestCase(TestCase):
     def test_200(self):
         comment = CommentFactory()
         url = comment.get_absolute_url()
-
         client = Client()
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -84,6 +105,7 @@ class CommentUpvoteViewTestCase(TestCase):
 
 class CommentDownvoteViewTestCase(TestCase):
     def test_login_redirect(self):
+        #   Do not understand what is goin on
         comment = CommentFactory()
         url = reverse('comment_downvote', args=(str(comment.id),))
         data = {}

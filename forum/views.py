@@ -19,6 +19,10 @@ from .models import (
 )
 
 
+class UserProfileView(DetailView):
+    # model = request.user
+    pk_url_kwarg = 'user_id'
+
 class ForumDetailView(DetailView):
     model = Forum
 

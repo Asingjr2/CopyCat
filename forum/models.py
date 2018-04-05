@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator
 from django.db import models
+from django.db.models import Sum
 from django.urls import reverse
 
 from autoslug import AutoSlugField
@@ -17,7 +18,7 @@ VOTE_CHOICES = (
 
 
 class Forum(models.Model):
-    slug = models.SlugField(primary_key=True)
+    slug = models.SlugField(primary_key=True, unique=True)
     moderators = models.ManyToManyField(User)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -51,7 +52,7 @@ class Post(BaseModel):
 
     @property
     def score(self):
-        return self.votes.all().aggregate(models.db.Sum('vote'))
+        return self.votes.all().aggregate(Sum('vote'))
 
     def __str__(self):
         return '{}, {}: {}'.format(self.forum, self.user, self.title)

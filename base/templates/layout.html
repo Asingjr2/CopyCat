@@ -12,12 +12,19 @@
         <meta property="og:description" content="{% block meta_og_description %}{% endblock %}" />
         <meta property="og:image" content="" />
         <title>Reddit Clone</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'base/css/style.css' %}">
+        
         {% block extra_style %}{% endblock %}
     </head>
 
     <body>
     <header>
-        <nav>
+        <nav class="top_nav navbar navbar-expand">
+            <a href="{% url 'forum_list' %}" class="nav-link nav-item">HOME -</a>
+            <a href="{% url 'forum_list' %}" class="nav-link nav-item">POPULAR -</a>
+            <a href="{% url 'forum_list' %}" class="nav-link nav-item">RANDOM - </a>
+            <a href="{% url 'forum_list' %}" class="nav-link nav-item">VIDOES - </a>
         </nav>
     </header>
 

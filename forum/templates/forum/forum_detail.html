@@ -35,7 +35,8 @@
                     <input type="submit" value="⬇️ {{ post.downvotes }}" />
                 </form>
                 {% endif %}
-                <a href="{{ post.get_absolute_url }}"><h3>{{ post }}</h3></a>
+                <a href="{{ post.get_absolute_url }}"><h3>{{ post }}</h3></a> {{ post.score }} points
+                
                 <p>submitted {{ post.created_at|naturaltime }} by <a href="{% url 'user_profile' post.user.username %}">{{ post.user }}</a></p>
             </div>
         {% empty %}
